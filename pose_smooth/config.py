@@ -36,7 +36,3 @@ class SmoothConfig:
 
         return self
 
-# Comments:
-# During development an early bug occurred when invalid parameter ranges (alpha > 1 or negative max_jump_px) 
-# silently produced unstable smoothing behavior. Adding validation here ensures incorrect hyperparameters
-# fail early instead of causing subtle runtime errors later.
