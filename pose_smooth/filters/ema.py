@@ -125,17 +125,3 @@ def smooth_frames(frames: List[FrameRecord], config: SmoothConfig) -> List[Frame
 
     return out
 
-
-# Bug fix:
-# An early implementation allowed large coordinate jumps to pass directly
-# into the EMA update, producing unrealistic pose spikes. The fix was to
-# reject observations when the displacement exceeds max_jump_px and the
-# detection confidence is not extremely high. This prevents noisy detections
-# from destabilizing the smoothed trajectory.
-
-# Edge Case:
-# Low confidence detections often occur when joints are occluded or briefly
-# lost by the pose detector. Instead of snapping the joint to a new noisy
-# observation, the smoother holds the previous position and decays the
-# confidence score. This preserves temporal continuity until reliable
-# detections resume.
